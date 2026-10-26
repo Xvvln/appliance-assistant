@@ -1,0 +1,450 @@
+{
+  "brand": "家电管家",
+  "version": "2026-10-23",
+  "notice": "本产品线为虚构设定，图片由 AI 生成，参数与使用说明不对应真实品牌型号。",
+  "reference_urls": [
+    "https://www.haier.com/laundry/20251016_281358.shtml",
+    "https://www.haier.com/laundry/20250729_268611.shtml",
+    "https://www.haier.com/laundry/20250416_259800.shtml",
+    "https://www.haier.com/laundry/20260814_294044.shtml",
+    "https://www.haier.com/air_conditioners/20211117_173218.shtml",
+    "https://www.haier.com/air_conditioners/20241209_253763.shtml",
+    "https://www.haier.com/air_conditioners/20230201_205535.shtml",
+    "https://www.haier.com/cooling/20190328_86892.shtml",
+    "https://www.haier.com/cooling/20200914_148138.shtml",
+    "https://www.haier.com/cooling/20231009_215587.shtml"
+  ],
+  "products": [
+    {
+      "model": "JG-F8",
+      "name": "轻巧 8",
+      "type": "滚筒洗衣机",
+      "wash_kg": 8,
+      "dry_kg": 0,
+      "width_mm": 595,
+      "height_mm": 850,
+      "depth_mm": 470,
+      "installation_mm": [
+        635,
+        870,
+        530
+      ],
+      "color": "暖白",
+      "motor": "变频电机",
+      "spin_rpm": 1200,
+      "auto_dose": false,
+      "wifi": false,
+      "drying": "不支持",
+      "programs": [
+        "棉麻",
+        "混合",
+        "快洗15分钟（≤2kg）",
+        "羊毛（≤1kg）",
+        "筒清洁"
+      ],
+      "features": [
+        "8kg洗涤",
+        "470mm机身深度",
+        "实体旋钮"
+      ],
+      "tradeoff": "无烘干、无自动投放；大件床品需检查装载体积。",
+      "price_cents": 169900,
+      "stock": 10,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-F10",
+      "name": "净洗 10",
+      "type": "滚筒洗衣机",
+      "wash_kg": 10,
+      "dry_kg": 0,
+      "width_mm": 595,
+      "height_mm": 850,
+      "depth_mm": 550,
+      "installation_mm": [
+        635,
+        870,
+        610
+      ],
+      "color": "银灰",
+      "motor": "直驱变频电机",
+      "spin_rpm": 1400,
+      "auto_dose": true,
+      "wifi": true,
+      "drying": "不支持",
+      "programs": [
+        "棉麻",
+        "混合",
+        "快洗15分钟（≤2kg）",
+        "羊毛（≤2kg）",
+        "床品",
+        "筒清洁"
+      ],
+      "features": [
+        "10kg洗涤",
+        "自动投放",
+        "直驱变频"
+      ],
+      "tradeoff": "无烘干；洗后需要晾晒或独立干衣设备。",
+      "price_cents": 249900,
+      "stock": 6,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-WD10",
+      "name": "洗烘 10",
+      "type": "洗烘一体机",
+      "wash_kg": 10,
+      "dry_kg": 6,
+      "width_mm": 595,
+      "height_mm": 850,
+      "depth_mm": 560,
+      "installation_mm": [
+        635,
+        870,
+        620
+      ],
+      "color": "石墨灰",
+      "motor": "变频电机",
+      "spin_rpm": 1400,
+      "auto_dose": false,
+      "wifi": true,
+      "drying": "冷凝式烘干",
+      "programs": [
+        "棉麻",
+        "混合",
+        "快洗15分钟（≤2kg）",
+        "洗烘连续（≤6kg）",
+        "单烘干（≤6kg）",
+        "筒清洁"
+      ],
+      "features": [
+        "10kg洗 / 6kg烘",
+        "冷凝烘干",
+        "洗烘连续"
+      ],
+      "tradeoff": "满载10kg洗涤后，需要减量至6kg再烘干；无自动投放。",
+      "price_cents": 299900,
+      "stock": 8,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-WD12",
+      "name": "大容量洗烘 12",
+      "type": "洗烘一体机",
+      "wash_kg": 12,
+      "dry_kg": 8,
+      "width_mm": 595,
+      "height_mm": 850,
+      "depth_mm": 600,
+      "installation_mm": [
+        635,
+        870,
+        660
+      ],
+      "color": "香槟灰",
+      "motor": "直驱变频电机",
+      "spin_rpm": 1400,
+      "auto_dose": true,
+      "wifi": true,
+      "drying": "冷凝式烘干",
+      "programs": [
+        "棉麻",
+        "混合",
+        "快洗15分钟（≤2kg）",
+        "床品",
+        "洗烘连续（≤8kg）",
+        "单烘干（≤8kg）",
+        "筒清洁"
+      ],
+      "features": [
+        "12kg洗 / 8kg烘",
+        "自动投放",
+        "床品程序"
+      ],
+      "tradeoff": "机身较深；满载12kg洗涤后，需要减量至8kg再烘干。",
+      "price_cents": 399900,
+      "stock": 4,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-T9",
+      "name": "便捷波轮 9",
+      "type": "波轮洗衣机",
+      "wash_kg": 9,
+      "dry_kg": 0,
+      "width_mm": 550,
+      "height_mm": 920,
+      "depth_mm": 570,
+      "installation_mm": [
+        590,
+        1450,
+        630
+      ],
+      "color": "米白",
+      "motor": "变频电机",
+      "spin_rpm": 700,
+      "auto_dose": false,
+      "wifi": false,
+      "drying": "不支持",
+      "programs": [
+        "标准",
+        "轻柔",
+        "快洗20分钟（≤2kg）",
+        "大物",
+        "桶清洁"
+      ],
+      "features": [
+        "9kg洗涤",
+        "顶部取衣",
+        "实体按键"
+      ],
+      "tradeoff": "顶盖上方须留开盖空间，不能放在封闭台面下；无烘干。",
+      "price_cents": 119900,
+      "stock": 12,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-TOWER12",
+      "name": "洗烘塔 12",
+      "type": "洗烘塔",
+      "wash_kg": 12,
+      "dry_kg": 10,
+      "width_mm": 600,
+      "height_mm": 1700,
+      "depth_mm": 660,
+      "installation_mm": [
+        640,
+        1750,
+        740
+      ],
+      "color": "深石墨",
+      "motor": "直驱变频电机",
+      "spin_rpm": 1400,
+      "auto_dose": true,
+      "wifi": true,
+      "drying": "独立热泵烘干",
+      "programs": [
+        "棉麻",
+        "混合",
+        "床品",
+        "快洗15分钟（≤2kg）",
+        "热泵棉麻烘（≤10kg）",
+        "筒清洁"
+      ],
+      "features": [
+        "12kg洗 / 10kg烘",
+        "独立热泵烘干",
+        "上下双筒"
+      ],
+      "tradeoff": "洗后需手动转移衣物到上筒；不能放在常规台面下，搬运和安装空间要求更高。",
+      "price_cents": 699900,
+      "stock": 2,
+      "category": "洗衣机"
+    },
+    {
+      "model": "JG-AC26",
+      "name": "舒风 26",
+      "category": "空调",
+      "type": "壁挂式空调",
+      "horsepower": 1,
+      "cooling_w": 2600,
+      "heating_w": 4400,
+      "cooling_input_w": 590,
+      "heating_input_w": 1160,
+      "airflow_m3h": 710,
+      "width_mm": 880,
+      "height_mm": 300,
+      "depth_mm": 190,
+      "outdoor_dimensions_mm": [
+        820,
+        550,
+        325
+      ],
+      "color": "珍珠白",
+      "wifi": true,
+      "features": [
+        "1匹变频",
+        "2600W制冷",
+        "独立除湿"
+      ],
+      "tradeoff": "需专业安装并核对外机位、冷凝水排水、配电及管线路径；不能只按房间面积承诺效果。墙面承重和送风方向需现场确认。",
+      "installation_note": "内外机位置、通风间距、穿墙孔、排水坡度和电源由专业安装人员按现场条件核定；不提供统一柜体预留尺寸。",
+      "price_cents": 199900,
+      "stock": 8,
+      "reference_model": "KFR-26GW/16CAB81U1",
+      "reference_url": "https://www.haier.com/air_conditioners/20211117_173218.shtml",
+      "reference_manual_url": "https://download.haier.com/cn/air_conditioners/W020240823329493237769.pdf"
+    },
+    {
+      "model": "JG-AC35",
+      "name": "舒风 35",
+      "category": "空调",
+      "type": "壁挂式空调",
+      "horsepower": 1.5,
+      "cooling_w": 3510,
+      "heating_w": 5100,
+      "cooling_input_w": 840,
+      "heating_input_w": 1280,
+      "airflow_m3h": 760,
+      "width_mm": 915,
+      "height_mm": 300,
+      "depth_mm": 200,
+      "outdoor_dimensions_mm": [
+        820,
+        550,
+        325
+      ],
+      "color": "珍珠白",
+      "wifi": true,
+      "features": [
+        "1.5匹变频",
+        "3510W制冷",
+        "独立除湿"
+      ],
+      "tradeoff": "需专业安装并核对外机位、冷凝水排水、配电及管线路径；不能只按房间面积承诺效果。墙面承重和送风方向需现场确认。",
+      "installation_note": "内外机位置、通风间距、穿墙孔、排水坡度和电源由专业安装人员按现场条件核定；不提供统一柜体预留尺寸。",
+      "price_cents": 269900,
+      "stock": 7,
+      "reference_model": "KFR-35GW/M200-1",
+      "reference_url": "https://www.haier.com/air_conditioners/20241209_253763.shtml",
+      "reference_manual_url": "https://download.haier.com/cn/air_conditioners/W020260616416152390106.pdf"
+    },
+    {
+      "model": "JG-AC72",
+      "name": "客厅舒风 72",
+      "category": "空调",
+      "type": "柜式空调",
+      "horsepower": 3,
+      "cooling_w": 7300,
+      "heating_w": 9720,
+      "cooling_input_w": 2020,
+      "heating_input_w": 2970,
+      "airflow_m3h": 1510,
+      "width_mm": 428,
+      "height_mm": 1830,
+      "depth_mm": 464,
+      "outdoor_dimensions_mm": [
+        889,
+        643,
+        355
+      ],
+      "color": "珍珠白",
+      "wifi": true,
+      "features": [
+        "3匹变频",
+        "7300W制冷",
+        "独立除湿"
+      ],
+      "tradeoff": "需专业安装并核对外机位、冷凝水排水、配电及管线路径；不能只按房间面积承诺效果。柜机还需预留地面摆放及送风空间。",
+      "installation_note": "内外机位置、通风间距、穿墙孔、排水坡度和电源由专业安装人员按现场条件核定；不提供统一柜体预留尺寸。",
+      "price_cents": 599900,
+      "stock": 4,
+      "reference_model": "KFR-72LW/A1FBA81U1",
+      "reference_url": "https://www.haier.com/air_conditioners/20230201_205535.shtml",
+      "reference_manual_url": "https://download.haier.com/cn/air_conditioners/W020260908332819545120.pdf"
+    },
+    {
+      "model": "JG-R218",
+      "name": "鲜储 218",
+      "category": "冰箱",
+      "type": "三门冰箱",
+      "total_l": 218,
+      "fridge_l": 118,
+      "freezer_l": 71,
+      "variable_l": 29,
+      "width_mm": 565,
+      "height_mm": 1750,
+      "depth_mm": 622,
+      "color": "深空灰",
+      "compressor": "定频",
+      "cooling_method": "风冷无霜",
+      "wifi": false,
+      "features": [
+        "218L容量",
+        "风冷无霜",
+        "29L变温区"
+      ],
+      "tradeoff": "需要侧面和背部散热空间，不能按机身宽度贴墙嵌入；还需核对门口搬运及开门、抽屉拉出空间。",
+      "installation_note": "独立放置，左右各至少100mm、背部至少100mm、顶部至少100mm；前方需能完全开门并抽出抽屉。此为本产品线的空间设定，不是参考型号安装认证。",
+      "installation_mm": [
+        765,
+        1850,
+        722
+      ],
+      "price_cents": 169900,
+      "stock": 9,
+      "reference_model": "BCD-218WDPD",
+      "reference_url": "https://www.haier.com/cooling/20190328_86892.shtml",
+      "reference_manual_url": "https://download.haier.com/cn/cooling/W020230607506879285444.pdf"
+    },
+    {
+      "model": "JG-R331",
+      "name": "鲜储 331",
+      "category": "冰箱",
+      "type": "多门冰箱",
+      "total_l": 331,
+      "fridge_l": 171,
+      "freezer_l": 118,
+      "variable_l": 42,
+      "width_mm": 640,
+      "height_mm": 1775,
+      "depth_mm": 674,
+      "color": "蓝灰",
+      "compressor": "变频",
+      "cooling_method": "风冷无霜",
+      "wifi": false,
+      "features": [
+        "331L容量",
+        "风冷无霜",
+        "42L变温区"
+      ],
+      "tradeoff": "需要侧面和背部散热空间，不能按机身宽度贴墙嵌入；还需核对门口搬运及开门、抽屉拉出空间。",
+      "installation_note": "独立放置，左右各至少100mm、背部至少100mm、顶部至少100mm；前方需能完全开门并抽出抽屉。此为本产品线的空间设定，不是参考型号安装认证。",
+      "installation_mm": [
+        840,
+        1875,
+        774
+      ],
+      "price_cents": 299900,
+      "stock": 6,
+      "reference_model": "BCD-331WFCQ",
+      "reference_url": "https://www.haier.com/cooling/20200914_148138.shtml",
+      "reference_manual_url": "https://download.haier.com/cn/cooling/W020230613609044284891.pdf"
+    },
+    {
+      "model": "JG-R549",
+      "name": "鲜储 549",
+      "category": "冰箱",
+      "type": "十字对开门冰箱",
+      "total_l": 549,
+      "fridge_l": 331,
+      "freezer_l": 181,
+      "variable_l": 37,
+      "width_mm": 908,
+      "height_mm": 1905,
+      "depth_mm": 648,
+      "color": "暖白",
+      "compressor": "变频",
+      "cooling_method": "风冷无霜",
+      "wifi": false,
+      "features": [
+        "549L容量",
+        "风冷无霜",
+        "37L变温区"
+      ],
+      "tradeoff": "需要侧面和背部散热空间，不能按机身宽度贴墙嵌入；还需核对门口搬运及开门、抽屉拉出空间。",
+      "installation_note": "独立放置，左右各至少100mm、背部至少100mm、顶部至少100mm；前方需能完全开门并抽出抽屉。此为本产品线的空间设定，不是参考型号安装认证。",
+      "installation_mm": [
+        1108,
+        2005,
+        748
+      ],
+      "price_cents": 469900,
+      "stock": 5,
+      "reference_model": "BCD-549WGHTD58WV",
+      "reference_url": "https://www.haier.com/cooling/20231009_215587.shtml",
+      "reference_manual_url": "https://dms.haier.net/app/haier/REF/?productCode=BC11EH000_D"
+    }
+  ]
+}

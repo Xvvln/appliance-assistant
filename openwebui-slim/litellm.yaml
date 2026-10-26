@@ -1,0 +1,99 @@
+model_list:
+- model_name: jiadian-auto
+  litellm_params:
+    model: auto_router/complexity_router
+    complexity_router_config:
+      # Native, local routing: no classifier API call and no extra model download.
+      classifier_type: heuristic
+      tiers:
+        SIMPLE: deepseek-text
+        MEDIUM: deepseek-text
+        COMPLEX: deepseek-text
+        REASONING: deepseek-text
+      modality_routing: true
+      session_affinity: false
+      return_raw_model_name: true
+    complexity_router_default_model: gemini-3.8-flash
+  model_info:
+    supports_vision: true
+    supports_function_calling: true
+- model_name: deepseek-text
+  litellm_params:
+    model: openai/neice-deepseek-v4
+    api_base: os.environ/DEEPSEEK_BASE_URL
+    api_key: os.environ/DEEPSEEK_API_KEY
+    reasoning_effort: medium
+    allowed_openai_params: [reasoning_effort]
+    extra_body:
+      thinking:
+        type: enabled
+    timeout: 90
+    stream_timeout: 60
+    num_retries: 0
+  model_info:
+    supports_vision: false
+    supports_function_calling: true
+    supports_reasoning: true
+- model_name: glm-text
+  litellm_params:
+    model: openai/GLM-5.2-trial
+    api_base: os.environ/DEEPSEEK_BASE_URL
+    api_key: os.environ/DEEPSEEK_API_KEY
+    reasoning_effort: medium
+    allowed_openai_params: [reasoning_effort]
+    extra_body:
+      thinking:
+        type: enabled
+    timeout: 90
+    stream_timeout: 60
+    num_retries: 0
+  model_info:
+    supports_vision: false
+    supports_function_calling: true
+    supports_reasoning: true
+- model_name: gemini-3.8-flash
+  litellm_params:
+    model: gemini/gemini-3.8-flash
+    api_base: https://aiplatform.googleapis.com/v1/publishers/google
+    api_key: os.environ/GOOGLE_VERTEX_API_KEY
+    reasoning_effort: medium
+    # Bound upstream model waits only; user forms and tool confirmations have no new timeout.
+    timeout: 60
+    stream_timeout: 45
+    # Avoid amplifying requests on the account's low quota tier.
+    num_retries: 0
+  model_info:
+    supports_vision: true
+    supports_function_calling: true
+- model_name: gemini-embedding-001
+  litellm_params:
+    model: vertex_ai/gemini-embedding-001
+    vertex_project: os.environ/GOOGLE_CLOUD_PROJECT
+    vertex_location: us-central1
+    vertex_credentials: os.environ/GOOGLE_APPLICATION_CREDENTIALS
+  model_info:
+    mode: embedding
+router_settings:
+  # Applies to the resolved text tier of jiadian-auto as well as direct calls.
+  # Images start at Gemini; text can reach Gemini after both text models fail.
+  fallbacks:
+  - deepseek-text: [glm-text, gemini-3.8-flash]
+  num_retries: 0
+  max_fallbacks: 2
+litellm_settings:
+  drop_params: true
+general_settings:
+  master_key: os.environ/LITELLM_MASTER_KEY
+vector_store_registry:
+- vector_store_name: 海尔洗衣机云端资料
+  litellm_params:
+    vector_store_id: jiadian-washer-docs
+    custom_llm_provider: vertex_ai/search_api
+    vertex_project: os.environ/GOOGLE_CLOUD_PROJECT
+    vertex_location: global
+    vertex_engine_id: jiadian-washer-search
+    extra_body:
+      contentSearchSpec:
+        searchResultMode: CHUNKS
+    vertex_credentials: os.environ/GOOGLE_APPLICATION_CREDENTIALS
+    vector_store_description: Google Cloud Vertex AI Search 托管的海尔洗衣机参数与说明书

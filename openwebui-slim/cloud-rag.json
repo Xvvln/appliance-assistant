@@ -1,0 +1,24 @@
+{
+  "@type": "type.googleapis.com/google.cloud.discoveryengine.v1.DataStore",
+  "name": "projects/YOUR_PROJECT_ID/locations/global/collections/default_collection/dataStores/jiadian-washer-docs",
+  "displayName": "家电管家-洗衣机官方资料",
+  "industryVertical": "GENERIC",
+  "solutionTypes": [
+    "SOLUTION_TYPE_SEARCH"
+  ],
+  "contentConfig": "CONTENT_REQUIRED",
+  "defaultSchemaId": "default_schema",
+  "documentProcessingConfig": {
+    "name": "projects/YOUR_PROJECT_ID/locations/global/collections/default_collection/dataStores/jiadian-washer-docs/documentProcessingConfig",
+    "chunkingConfig": {
+      "layoutBasedChunkingConfig": {
+        "chunkSize": 500,
+        "includeAncestorHeadings": true
+      }
+    },
+    "defaultParsingConfig": {
+      "layoutParsingConfig": {}
+    }
+  },
+  "servingConfigDataStore": {}
+}

@@ -1,0 +1,107 @@
+{
+  "notice": "本产品线为虚构设定，图片由 AI 生成，参数与使用说明不对应真实品牌型号。",
+  "products": [
+    {
+      "model": "XQG100-HL58H1",
+      "price_cents": 329900,
+      "stock": 8,
+      "active": false
+    },
+    {
+      "model": "XQG100-BEU38A5U1",
+      "price_cents": 459900,
+      "stock": 4,
+      "active": false
+    },
+    {
+      "model": "XQG120-HLE58A2U1",
+      "price_cents": 429900,
+      "stock": 3,
+      "active": false
+    },
+    {
+      "model": "EG100PRO89",
+      "price_cents": 379900,
+      "stock": 0,
+      "active": false
+    },
+    {
+      "model": "XQB100-BZ20B0",
+      "price_cents": 139900,
+      "stock": 12,
+      "active": false
+    },
+    {
+      "model": "JG-F8",
+      "price_cents": 169900,
+      "stock": 10,
+      "active": true
+    },
+    {
+      "model": "JG-F10",
+      "price_cents": 249900,
+      "stock": 6,
+      "active": true
+    },
+    {
+      "model": "JG-WD10",
+      "price_cents": 299900,
+      "stock": 8,
+      "active": true
+    },
+    {
+      "model": "JG-WD12",
+      "price_cents": 399900,
+      "stock": 4,
+      "active": true
+    },
+    {
+      "model": "JG-T9",
+      "price_cents": 119900,
+      "stock": 12,
+      "active": true
+    },
+    {
+      "model": "JG-TOWER12",
+      "price_cents": 699900,
+      "stock": 2,
+      "active": true
+    },
+    {
+      "model": "JG-AC26",
+      "price_cents": 199900,
+      "stock": 8,
+      "active": true
+    },
+    {
+      "model": "JG-AC35",
+      "price_cents": 269900,
+      "stock": 7,
+      "active": true
+    },
+    {
+      "model": "JG-AC72",
+      "price_cents": 599900,
+      "stock": 4,
+      "active": true
+    },
+    {
+      "model": "JG-R218",
+      "price_cents": 169900,
+      "stock": 9,
+      "active": true
+    },
+    {
+      "model": "JG-R331",
+      "price_cents": 299900,
+      "stock": 6,
+      "active": true
+    },
+    {
+      "model": "JG-R549",
+      "price_cents": 469900,
+      "stock": 5,
+      "active": true
+    }
+  ]
+}

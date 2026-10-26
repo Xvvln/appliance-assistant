@@ -1,0 +1,46 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "家电云端知识库",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/v1/vector_stores/jiadian-washer-docs/search": {
+      "post": {
+        "operationId": "search_washer_knowledge",
+        "summary": "检索洗衣机、空调与冰箱参数及使用说明",
+        "description": "检索 Google Cloud 托管的产品资料，包含家电管家虚构产品和历史海尔官方资料。按准确型号查询安装、使用与售后问题，多型号分别查；核对结果所属型号及 fictional 标记。引用 attributes.structData.source_url / manual_url，虚构产品来源称为产品资料，不能冒充官网认证或套用其他型号故障代码。新选购目录及价格库存由商城工具查询。找不到的信息不要推断成不存在。",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "包含产品型号和所需信息的检索问题"
+                  },
+                  "max_num_results": {
+                    "type": "integer",
+                    "default": 5,
+                    "minimum": 1,
+                    "maximum": 20
+                  }
+                },
+                "required": [
+                  "query"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Vertex AI Search 检索片段、型号、资料来源及虚构标记"
+          }
+        }
+      }
+    }
+  }
+}

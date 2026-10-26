@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>挑选家电</title>
+<style>
+  :root { --bg:#fff;--fg:#171717;--muted:#525252;--soft:rgb(0 0 0 / .035);--line:rgb(0 0 0 / .08);color-scheme:light; }
+  :root.dark { --bg:#171717;--fg:#eee;--muted:#aaa;--soft:rgb(255 255 255 / .05);--line:rgb(255 255 255 / .1);color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0;padding:16px 2px 8px;background:var(--bg);color:var(--fg);font:14px/1.5 -apple-system,BlinkMacSystemFont,Inter,system-ui,sans-serif; }
+  h1 { margin:0;font-size:18px;line-height:1.5;font-weight:600; }
+  .subtitle { margin:4px 0 20px;font-size:12px;color:var(--muted); }
+  .grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px; }
+  .card { min-width:0;display:flex;flex-direction:column; }
+  .photo { background:#fff;border-radius:12px;overflow:hidden; }
+  .photo img { display:block;width:100%;height:200px;object-fit:contain;padding:10px; }
+  h2 { margin:12px 0 2px;font-size:15px;font-weight:600; }
+  .model,.spec,.reason,.tradeoff { font-size:12px;color:var(--muted);margin:4px 0;overflow-wrap:anywhere; }
+  .reason { color:var(--fg);margin:10px 0 4px; }
+  .price { display:flex;align-items:baseline;gap:8px;margin:10px 0;font-variant-numeric:tabular-nums; }
+  .price strong { font-size:18px;font-weight:600; }
+  .price small { color:var(--muted);font-size:12px; }
+  .actions { display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto;padding-top:12px; }
+  button { border:0;border-radius:8px;min-height:40px;padding:8px 12px;background:var(--soft);color:var(--fg);font:inherit;font-size:13px;font-weight:500;cursor:pointer; }
+  button:hover { background:var(--line); }
+  button:active { opacity:.8; }
+  button.primary { background:var(--fg);color:var(--bg); }
+  button:disabled { opacity:.4;cursor:default; }
+  :focus-visible { outline:2px solid #3b82f6;outline-offset:3px; }
+  label { display:flex;align-items:center;gap:7px;min-height:40px;font-size:12px;cursor:pointer; }
+  input[type=checkbox] { width:16px;height:16px;accent-color:var(--fg);margin:0; }
+  .links { display:flex;gap:16px;margin:8px 0 0; }
+  a { color:var(--muted);font-size:12px;text-underline-offset:3px; }
+  .toolbar { display:flex;align-items:center;justify-content:space-between;gap:12px;margin:24px 0 12px;padding:12px 0;border-top:1px solid var(--line); }
+  .toolbar span { font-size:12px;color:var(--muted); }
+  [hidden] { display:none!important; }
+  .table-scroll { overflow:auto;max-width:100%;border-radius:8px;background:var(--soft); }
+  table { border-collapse:collapse;width:100%;font-size:12px;text-align:left; }
+  th,td { padding:12px;vertical-align:top;border-bottom:1px solid var(--line);min-width:125px;overflow-wrap:anywhere; }
+  th { font-weight:500; }
+  th:first-child { min-width:100px; }
+  #feedback { color:var(--muted);font-size:12px;margin:8px 0; }
+  @media(max-width:430px) { .grid { grid-template-columns:1fr;gap:24px; } .photo img { height:210px; } button,label { min-height:44px; } }
+</style>
+</head>
+<body>
+<h1>挑选家电</h1>
+<p class="subtitle">可勾选 2–3 款产品进行对比。</p>
+<div class="grid" id="products"></div>
+<div class="toolbar"><span id="selection-count">已选 0 款</span><button id="compare" disabled>对比所选</button></div>
+<div id="comparison" hidden><div class="table-scroll" tabindex="0" role="region" aria-label="产品参数对比"><table id="table"></table></div></div>
+<p id="feedback" role="status" aria-live="polite"></p>
+<script>
+const data = /*PRODUCT_DATA*/{};
+const dark = data.theme.dark ?? window.matchMedia('(prefers-color-scheme: dark)').matches;
+document.documentElement.classList.toggle('dark',dark);
+if (data.theme.font) document.body.style.fontFamily=data.theme.font;
+const selected = new Set();
+const products = data.products;
+const feedback = document.getElementById('feedback');
+const comparison = document.getElementById('comparison');
+const compareButton = document.getElementById('compare');
+function el(tag,text,className) {
+  const node=document.createElement(tag);
+  if(text!==undefined) node.textContent=text;
+  if(className) node.className=className;
+  return node;
+}
+const dimensions=p=>`${p.width_mm} × ${p.height_mm} × ${p.depth_mm} mm`;
+function choose(p) {
+  parent.postMessage({type:'input:prompt:submit',text:`我选择 ${p.name}（${p.model}），请继续订购，先核对配送和安装选项。`},'*');
+  feedback.textContent=`已选择 ${p.model}，请在 Open WebUI 的确认框中继续；还没有创建订单。`;
+}
+function updateSelection() {
+  document.getElementById('selection-count').textContent=`已选 ${selected.size} 款`;
+  compareButton.disabled=selected.size<2;
+  comparison.hidden=true;
+}
+for (const p of products) {
+  const card=el('article',undefined,'card');
+  const photo=el('div',undefined,'photo');
+  const img=el('img');img.src=p.image_url;img.alt=`${p.name} ${p.model} 的 AI 生成产品图`;img.loading='lazy';
+  img.addEventListener('error',()=>{photo.textContent='图片暂时无法加载';});photo.append(img);
+  card.append(photo,el('h2',p.name),el('div',`${p.model} · ${p.type}`,'model'));
+  card.append(el('p',p.features.join(' · '),'spec'),el('p',`${p.category==='空调'?'室内机':'机身'}宽×高×深 ${dimensions(p)}`,'spec'));
+  if(p.reason) card.append(el('p',p.reason,'reason'));
+  card.append(el('p',p.tradeoff,'tradeoff'));
+  const price=el('div',undefined,'price');price.append(el('strong',`¥${p.price_yuan.toLocaleString('zh-CN')}`),el('small',`${p.stock>0?`库存 ${p.stock}`:'暂时缺货'}`));card.append(price);
+  const actions=el('div',undefined,'actions');const label=el('label');const checkbox=el('input');checkbox.type='checkbox';checkbox.setAttribute('aria-label',`对比 ${p.model}`);
+  checkbox.addEventListener('change',()=>{
+    if(checkbox.checked&&selected.size>=3){checkbox.checked=false;feedback.textContent='最多同时对比 3 款，请先取消一款。';return;}
+    if(checkbox.checked)selected.add(p.model);else selected.delete(p.model);
+    feedback.textContent='';updateSelection();
+  });
+  label.append(checkbox,document.createTextNode('加入对比'));
+  const buy=el('button',p.stock>0?'选这款':'暂时缺货');buy.disabled=p.stock<=0;buy.setAttribute('aria-label',`选择 ${p.model}`);buy.addEventListener('click',()=>choose(p));
+  actions.append(label,buy);card.append(actions);
+  const links=el('div',undefined,'links');
+  for(const [title,url] of [['产品资料',p.spec_url],['使用说明',p.manual_url]]){
+    const link=el('a',title);link.href=url;link.target='_blank';link.rel='noopener';links.append(link);
+  }
+  card.append(links);document.getElementById('products').append(card);
+}
+compareButton.addEventListener('click',()=>{
+  const chosen=products.filter(p=>selected.has(p.model));const table=document.getElementById('table');table.replaceChildren();
+  const head=el('thead');const titleRow=el('tr');titleRow.append(el('th','对比项目'));
+  for(const p of chosen)titleRow.append(el('th',`${p.name} · ${p.model}`));head.append(titleRow);table.append(head);
+  const body=el('tbody');
+  const labels=[...new Set(chosen.flatMap(p=>Object.keys(p.comparison_specs)))];
+  const rows=[['价格',p=>`¥${p.price_yuan}`],['库存',p=>`${p.stock} 台`],...labels.map(label=>[label,p=>p.comparison_specs[label]??'—'])];
+  for(const [label,value] of rows){const row=el('tr');const th=el('th',label);th.scope='row';row.append(th);for(const p of chosen)row.append(el('td',value(p)));body.append(row);}
+  const last=el('tr');last.append(el('th','选择'));
+  for(const p of chosen){const cell=el('td');const button=el('button','选这款');button.disabled=p.stock<=0;button.addEventListener('click',()=>choose(p));cell.append(button);last.append(cell);}
+  body.append(last);table.append(body);comparison.hidden=false;
+  feedback.textContent='安装需继续核对门口、开门和管线位置；这里的预留尺寸为虚构产品设定。';
+  comparison.scrollIntoView({block:'nearest'});
+});
+function reportHeight(){parent.postMessage({type:'iframe:height',height:document.documentElement.scrollHeight},'*');}
+window.addEventListener('load',reportHeight);new ResizeObserver(reportHeight).observe(document.body);
+</script>
+</body>
+</html>

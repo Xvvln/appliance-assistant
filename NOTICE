@@ -1,0 +1,7 @@
+Appliance Assistant / 家电管家
+Based on Open WebUI v0.12.3, commit 91ea4e3421d1d8069f13d4a463fcb5986d94ea60.
+Upstream: https://github.com/open-webui/open-webui
+This repository distributes local modifications and new appliance-service modules.
+Upstream notices, branding requirements and license terms remain applicable.
+See OPEN_WEBUI_LICENSE and OPEN_WEBUI_LICENSE_HISTORY. No alternative license is asserted for upstream code.
+JG-series products and images are fictional illustrative materials. Manufacturer references in source documents retain their attribution and are not endorsements.

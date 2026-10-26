@@ -1,0 +1,238 @@
+diff --git a/backend/open_webui/routers/images.py b/backend/open_webui/routers/images.py
+index 28a037a..d40b1a9 100644
+--- a/backend/open_webui/routers/images.py
++++ b/backend/open_webui/routers/images.py
+@@ -1069,7 +1069,7 @@ async def image_edits(
+             }
+ 
+             model = f'{model}:generateContent'
+-            data = {'contents': [{'parts': [{'text': form_data.prompt}]}]}
++            data = {'contents': [{'role': 'user', 'parts': [{'text': form_data.prompt}]}]}
+ 
+             if isinstance(form_data.image, str):
+                 data['contents'][0]['parts'].append(
+diff --git a/src/lib/components/layout/Sidebar.svelte b/src/lib/components/layout/Sidebar.svelte
+index e9b2fcc..b02b33e 100644
+--- a/src/lib/components/layout/Sidebar.svelte
++++ b/src/lib/components/layout/Sidebar.svelte
+@@ -83,7 +83,10 @@
+ 	import ClockIcon from './Sidebar/icons/Clock.svelte';
+ 	import CodeIcon from './Sidebar/icons/Code.svelte';
+ 	import EditPencilIcon from './Sidebar/icons/EditPencil.svelte';
+-	import NotesIcon from './Sidebar/icons/Notes.svelte';
++	import NotesIcon from '$lib/components/icons/Cube.svelte';
++	import ClipboardIcon from '$lib/components/icons/Clipboard.svelte';
++	import MapIcon from '$lib/components/icons/Map.svelte';
++	import SparklesIcon from '$lib/components/icons/Sparkles.svelte';
+ 	import SearchIcon from './Sidebar/icons/Search.svelte';
+ 	import Sidebar from '../icons/Sidebar.svelte';
+ 	import WorkspaceIcon from './Sidebar/icons/Workspace.svelte';
+@@ -191,7 +194,7 @@
+ 
+ 	const getMenuItemMeta = (id) => {
+ 		const items = {
+-			notes: { label: $i18n.t('Notes'), href: '/notes', iconType: 'note' },
++			notes: { label: '商城', href: '/shop', iconType: 'note' },
+ 			workspace: { label: $i18n.t('Workspace'), href: '/workspace', iconType: 'workspace' },
+ 			automations: { label: $i18n.t('Automations'), href: '/automations', iconType: 'automations' },
+ 			calendar: { label: $i18n.t('Calendar'), href: '/calendar', iconType: 'calendar' },
+@@ -201,7 +204,7 @@
+ 	};
+ 
+ 	const menuItemPathPrefixes = {
+-		notes: '/notes',
++		notes: '/shop',
+ 		workspace: '/workspace',
+ 		calendar: '/calendar',
+ 		automations: '/automations',
+@@ -1076,6 +1079,52 @@
+ 							</div>
+ 						{/if}
+ 					{/each}
++					<div>
++						<Tooltip content="订单与售后" placement="right">
++							<a
++								class="cursor-pointer flex size-8 items-center justify-center transition group"
++								href="/orders"
++								aria-label="订单与售后"
++								on:click={(e) => {
++									e.stopImmediatePropagation();
++									e.preventDefault();
++									goto('/orders');
++									itemClickHandler();
++								}}
++							>
++								<div class="self-center flex size-[calc(30px*var(--app-text-scale,1))] items-center justify-center rounded-lg transition {$page.url.pathname === '/orders' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'group-hover:bg-gray-100 dark:group-hover:bg-gray-900'}">
++									<ClipboardIcon className="size-4" strokeWidth="1.5" />
++								</div>
++							</a>
++						</Tooltip>
++					</div>
++					<div>
++						<Tooltip content="地址管理" placement="right">
++							<a
++								class="cursor-pointer flex size-8 items-center justify-center transition group"
++								href="/addresses"
++								aria-label="地址管理"
++								on:click={(e) => {
++									e.stopImmediatePropagation();
++									e.preventDefault();
++									goto('/addresses');
++									itemClickHandler();
++								}}
++							>
++								<div class="self-center flex size-[calc(30px*var(--app-text-scale,1))] items-center justify-center rounded-lg transition {$page.url.pathname === '/addresses' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'group-hover:bg-gray-100 dark:group-hover:bg-gray-900'}">
++									<MapIcon className="size-4" strokeWidth="1.5" />
++								</div>
++							</a>
++						</Tooltip>
++					</div>
++					<div>
++						<Tooltip content="生活助手" placement="right">
++							<a class="cursor-pointer flex size-8 items-center justify-center transition group" href="/assistant" aria-label="生活助手"
++								on:click={(e) => { e.stopImmediatePropagation(); e.preventDefault(); goto('/assistant'); itemClickHandler(); }}>
++								<div class="self-center flex size-[calc(30px*var(--app-text-scale,1))] items-center justify-center rounded-lg transition {$page.url.pathname === '/assistant' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'group-hover:bg-gray-100 dark:group-hover:bg-gray-900'}"><SparklesIcon className="size-4" strokeWidth="1.5" /></div>
++							</a>
++						</Tooltip>
++					</div>
+ 				</div>
+ 			</button>
+ 
+@@ -1304,6 +1353,38 @@
+ 								{/if}
+ 							{/each}
+ 						</div>
++						<div class="px-1 flex justify-center text-gray-700 dark:text-gray-300">
++							<a
++								id="sidebar-orders-button"
++								class="grow flex items-center space-x-2 rounded-xl px-2 py-1.5 transition {$page.url.pathname === '/orders' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'hover:bg-gray-100 dark:hover:bg-gray-900'}"
++								href="/orders"
++								on:click={itemClickHandler}
++								draggable="false"
++								aria-label="订单与售后"
++							>
++								<div class="self-center flex size-4 shrink-0 items-center justify-center"><ClipboardIcon className="size-4" strokeWidth="1.5" /></div>
++								<div class="flex self-center translate-y-[0.5px] text-[0.8125rem] leading-5">订单与售后</div>
++							</a>
++						</div>
++						<div class="px-1 flex justify-center text-gray-700 dark:text-gray-300">
++							<a
++								id="sidebar-addresses-button"
++								class="grow flex items-center space-x-2 rounded-xl px-2 py-1.5 transition {$page.url.pathname === '/addresses' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'hover:bg-gray-100 dark:hover:bg-gray-900'}"
++								href="/addresses"
++								on:click={itemClickHandler}
++								draggable="false"
++								aria-label="地址管理"
++							>
++								<div class="self-center flex size-4 shrink-0 items-center justify-center"><MapIcon className="size-4" strokeWidth="1.5" /></div>
++								<div class="flex self-center translate-y-[0.5px] text-[0.8125rem] leading-5">地址管理</div>
++							</a>
++						</div>
++						<div class="px-1 flex justify-center text-gray-700 dark:text-gray-300">
++							<a id="sidebar-assistant-button" class="grow flex items-center space-x-2 rounded-xl px-2 py-1.5 transition {$page.url.pathname === '/assistant' ? 'bg-black/[0.035] dark:bg-white/[0.045]' : 'hover:bg-gray-100 dark:hover:bg-gray-900'}" href="/assistant" on:click={itemClickHandler} draggable="false" aria-label="生活助手">
++								<div class="self-center flex size-4 shrink-0 items-center justify-center"><SparklesIcon className="size-4" strokeWidth="1.5" /></div>
++								<div class="flex self-center translate-y-[0.5px] text-[0.8125rem] leading-5">生活助手</div>
++							</a>
++						</div>
+ 					</div>
+ 
+ 					{#if $visiblePinnedModels.length > 0}
+diff --git a/src/lib/components/workspace/Knowledge.svelte b/src/lib/components/workspace/Knowledge.svelte
+index 89fe155..e09d6b2 100644
+--- a/src/lib/components/workspace/Knowledge.svelte
++++ b/src/lib/components/workspace/Knowledge.svelte
+@@ -1,4 +1,6 @@
+ <script lang="ts">
++	import { getCloudKnowledge, type CloudKnowledge } from '$lib/apis/jiadian';
++	let cloudKnowledge: CloudKnowledge | null = null;
+ 	import WorkspaceAccessModal from './common/WorkspaceAccessModal.svelte';
+ 	let accessModal: WorkspaceAccessModal;
+ 	import dayjs from 'dayjs';
+@@ -166,11 +168,21 @@
+ 
+ 		if (res) {
+ 			console.log(res);
+-			total = res.total;
++			const cloudMatches =
++				cloudKnowledge &&
++				!viewOption &&
++				sourceOption !== 'local' &&
++				(!query ||
++					`${cloudKnowledge.name} ${cloudKnowledge.documents.map((d) => d.model).join(' ')}`
++						.toLowerCase()
++						.includes(query.toLowerCase()));
++			total = res.total + (cloudMatches ? 1 : 0);
+ 			workspaceCounts.update((counts) => ({ ...counts, knowledge: total }));
+-			const pageItems: KnowledgeListItem[] = res.items ?? [];
++			const pageItems: KnowledgeListItem[] = [...(res.items ?? [])];
++			if (page === 1 && cloudMatches && cloudKnowledge)
++				pageItems.unshift({ ...cloudKnowledge, write_access: false, user: { name: '家电管家' } });
+ 
+-			if ((pageItems ?? []).length === 0) {
++			if ((res.items ?? []).length === 0) {
+ 				allItemsLoaded = true;
+ 			} else {
+ 				allItemsLoaded = false;
+@@ -283,6 +295,7 @@
+ 	};
+ 
+ 	onMount(async () => {
++		cloudKnowledge = await getCloudKnowledge().catch(() => null);
+ 		viewOption = localStorage?.workspaceViewOption || '';
+ 		sourceOption = localStorage?.workspaceKnowledgeSourceOption || '';
+ 		loaded = true;
+@@ -513,7 +526,9 @@
+ 									class="hidden max-w-44 shrink-0 self-center truncate text-right text-[0.6875rem] leading-5 text-gray-500 dark:text-gray-500 md:block"
+ 								>
+ 									<Tooltip
+-										content={item?.user?.email ?? $i18n.t('Deleted User')}
++										content={item.id === 'washer-cloud'
++											? '家电管家'
++											: (item?.user?.email ?? $i18n.t('Deleted User'))}
+ 										className="min-w-0"
+ 										placement="top-start"
+ 									>
+@@ -525,7 +540,7 @@
+ 									</Tooltip>
+ 								</div>
+ 
+-								{#if item?.write_access || $user?.role === 'admin'}
++								{#if item.id !== 'washer-cloud' && (item?.write_access || $user?.role === 'admin')}
+ 									<div class="ml-2 flex shrink-0 flex-row items-center self-center">
+ 										<ItemMenu
+ 											accessHandler={() => accessModal.open(item.id)}
+diff --git a/src/routes/(app)/workspace/+layout.svelte b/src/routes/(app)/workspace/+layout.svelte
+index 52f728c..56c2b80 100644
+--- a/src/routes/(app)/workspace/+layout.svelte
++++ b/src/routes/(app)/workspace/+layout.svelte
+@@ -1,4 +1,5 @@
+ <script lang="ts">
++	import { getCloudKnowledge } from '$lib/apis/jiadian';
+ 	import { onMount, getContext } from 'svelte';
+ 	import type { Writable } from 'svelte/store';
+ 	import type { i18n as i18nType } from 'i18next';
+@@ -54,7 +55,7 @@
+ 			$config?.features?.enable_tools &&
+ 			($user?.role === 'admin' || $user?.permissions?.workspace?.tools);
+ 
+-		const [modelRes, knowledgeRes, promptRes, skillRes, toolRes] = await Promise.all([
++		const [modelRes, knowledgeRes, promptRes, skillRes, toolRes, cloudRes] = await Promise.all([
+ 			canViewModels
+ 				? getModelItems(localStorage.token, null, null, null, null, null, 1).catch(() => null)
+ 				: null,
+@@ -65,12 +66,13 @@
+ 				? getPromptItems(localStorage.token, null, null, null, null, null, 1).catch(() => null)
+ 				: null,
+ 			canViewSkills ? getSkillItems(localStorage.token, null, null, 1).catch(() => null) : null,
+-			canViewTools ? getToolList(localStorage.token).catch(() => null) : null
++			canViewTools ? getToolList(localStorage.token).catch(() => null) : null,
++			canViewKnowledge ? getCloudKnowledge().catch(() => null) : null
+ 		]);
+ 
+ 		workspaceCounts.set({
+ 			models: getCount(modelRes),
+-			knowledge: getCount(knowledgeRes),
++			knowledge: (getCount(knowledgeRes) ?? 0) + (cloudRes ? 1 : 0),
+ 			prompts: getCount(promptRes),
+ 			skills: getCount(skillRes),
+ 			tools: getCount(toolRes)
